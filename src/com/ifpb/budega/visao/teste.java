@@ -16,18 +16,34 @@ public class teste {
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.pack();
         tela.setVisible(true);
+        tela.setSize(350,400);
+        tela.setLocationRelativeTo(null);
     }
 
-    public void Cadastrar(String cpf, String nome, LocalDate ingresso, Conexao con){
-        String sql = "INSERT INTO funcionario(cpf, nome, ingresso) values(" + cpf + ", " + nome + ", " + ingresso + ")";
-        int res = con.executaSQL(sql);
-        if (res > 0){
-            System.out.println("Cadastrado com sucesso!!!");
+    public void Cadastrar(String cpf, String nome, String ingresso, Conexao con){
+        String sql = "INSERT INTO funcionario(cpf, nome, ingresso) values(" +"'" + cpf + "'" +", " +"'" + nome + "'" + ", " +"'" + ingresso + "'" + ")";
+        String sql2 = "SELECT * FROM funcionario";
+        ResultSet rs = con.executaBusca(sql2);
+
+        try{
+            while (rs.next()) {
+                String cpf2 = rs.getString("cpf");
+                if (cpf.equals(cpf2)){
+                    JOptionPane.showMessageDialog(null,
+                            "Esse cpf já está cadastrado","Erro ao cadastrar", JOptionPane.ERROR_MESSAGE );
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        int resu = con.executaSQL(sql);
+        if (resu > 0){
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!!!",
+                    "Sucesso ao cadastrar", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            System.out.println("Erro ao cadastrar!!!");
+            System.out.println("Erro ao cadastrar");
         }
     }
-
 //    public void Buscar(Conexao con){
 //        String sql = "SELECT * FROM funcionario";
 //        ResultSet rs = con.executaBusca(sql);

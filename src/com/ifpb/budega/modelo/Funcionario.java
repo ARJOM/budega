@@ -7,9 +7,9 @@ public class Funcionario {
 
     private String cpf;
     private String nome;
-    private LocalDate ingresso;
+    private String ingresso;
 
-    public Funcionario(String cpf, String nome, LocalDate ingresso) {
+    public Funcionario() {
         this.cpf = cpf;
         this.nome = nome;
         this.ingresso = ingresso;
@@ -31,11 +31,11 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public LocalDate getIngresso() {
+    public String getIngresso() {
         return ingresso;
     }
 
-    public void setIngresso(LocalDate ingresso) {
+    public void setIngresso(String ingresso) {
         this.ingresso = ingresso;
     }
 

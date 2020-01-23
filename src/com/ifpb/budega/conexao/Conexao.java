@@ -38,7 +38,7 @@ public class Conexao {
         try{
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
-            con.close();
+
             return rs;
         }catch (Exception e){
             e.printStackTrace();
